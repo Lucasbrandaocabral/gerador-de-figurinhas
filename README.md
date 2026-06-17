@@ -7,6 +7,9 @@ e da Panini você sobe **suas próprias imagens** (emblema e selo).
 ## Recursos
 
 - Foto da pessoa (rosto/busto) com pré-visualização ao vivo
+- **Remoção automática de fundo** da foto (opcional, ligada por padrão): deixa a
+  pessoa recortada igual ao original, com o numerão aparecendo em volta. Se
+  preferir, desligue e use uma imagem já recortada (PNG transparente)
 - Numerão de fundo gigante, igual às figurinhas
 - Nome em destaque, linha de dados, grupo/unidade e sigla de 3 letras
 - **Emblema** no canto superior (no lugar da FIFA): envie sua imagem ou use iniciais

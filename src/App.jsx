@@ -35,6 +35,8 @@ export default function App() {
   const [selb, setSelo] = useState(null)
   const [baixando, setBaixando] = useState(false)
   const [colecao, setColecao] = useState([])
+  const [removerFundo, setRemoverFundo] = useState(true)
+  const [processandoFoto, setProcessandoFoto] = useState(false)
   const cardRef = useRef(null)
 
   function update(field, value) {
@@ -46,6 +48,37 @@ export default function App() {
     const reader = new FileReader()
     reader.onload = (e) => setter(e.target.result)
     reader.readAsDataURL(file)
+  }
+
+  function blobParaDataURL(blob) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader()
+      reader.onload = (e) => resolve(e.target.result)
+      reader.onerror = reject
+      reader.readAsDataURL(blob)
+    })
+  }
+
+  async function aoEscolherFoto(file) {
+    if (!file) return
+    // Mostra a foto original imediatamente
+    setFoto(await blobParaDataURL(file))
+    if (!removerFundo) return
+    // Remove o fundo para deixar igual ao original (recorte da pessoa)
+    setProcessandoFoto(true)
+    try {
+      const { removeBackground } = await import('@imgly/background-removal')
+      const blob = await removeBackground(file)
+      setFoto(await blobParaDataURL(blob))
+    } catch (err) {
+      console.error('Falha ao remover o fundo:', err)
+      alert(
+        'Não consegui remover o fundo automaticamente (pode ser falta de internet). ' +
+          'A foto foi mantida como está — você pode usar uma imagem já recortada (PNG transparente).',
+      )
+    } finally {
+      setProcessandoFoto(false)
+    }
   }
 
   function aplicarPaleta(p) {
@@ -128,10 +161,21 @@ export default function App() {
                 <input
                   type="file"
                   accept="image/*"
-                  onChange={(e) => lerArquivo(e.target.files[0], setFoto)}
+                  onChange={(e) => aoEscolherFoto(e.target.files[0])}
                   hidden
                 />
               </label>
+              <label className="check">
+                <input
+                  type="checkbox"
+                  checked={removerFundo}
+                  onChange={(e) => setRemoverFundo(e.target.checked)}
+                />
+                Remover fundo automaticamente (deixa igual ao original)
+              </label>
+              {processandoFoto && (
+                <span className="processando">⏳ Removendo o fundo da foto…</span>
+              )}
             </Field>
 
             <Field label="Nome (em destaque)">
