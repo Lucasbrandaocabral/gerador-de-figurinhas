@@ -14,8 +14,11 @@ const StickerCard = forwardRef(function StickerCard(
           '--secondary': data.secondary,
         }}
       >
-        {/* Numerão de fundo */}
-        <div className="sticker__number">{data.numero}</div>
+        {/* Numerão de fundo (verde na frente, amarelo deslocado atrás) */}
+        <div className="sticker__number">
+          <span className="sticker__number-back">{data.numero}</span>
+          <span className="sticker__number-front">{data.numero}</span>
+        </div>
 
         {/* Foto da pessoa */}
         <div className="sticker__photo">
@@ -39,8 +42,23 @@ const StickerCard = forwardRef(function StickerCard(
           )}
         </div>
 
-        {/* Sigla vertical na lateral (lugar do BRA) */}
-        <div className="sticker__sigla">{data.sigla}</div>
+        {/* Lateral: gota com a bandeira do Brasil + sigla vazada (lugar do BRA) */}
+        <div className="sticker__country">
+          <div className="sticker__flag">
+            <svg viewBox="0 0 28 20" aria-label="Bandeira do Brasil">
+              <rect width="28" height="20" fill="#009b3a" />
+              <polygon points="14,2.5 25.5,10 14,17.5 2.5,10" fill="#fedf00" />
+              <circle cx="14" cy="10" r="4.3" fill="#002776" />
+              <path
+                d="M10.1 8.7 Q14 7.4 17.9 9.3"
+                stroke="#fff"
+                strokeWidth="0.9"
+                fill="none"
+              />
+            </svg>
+          </div>
+          <div className="sticker__code">{data.sigla}</div>
+        </div>
 
         {/* Faixas inferiores */}
         <div className="sticker__bands">

@@ -32,20 +32,33 @@
   background: var(--primary);
 }
 
-/* Numerão de fundo grande (verde com "fantasma" amarelo deslocado, como o original) */
+/* Numerão de fundo grande — verde na frente, amarelo deslocado atrás */
 .sticker__number {
   position: absolute;
   top: 4%;
   left: 50%;
   transform: translateX(-50%);
-  font-weight: 900;
-  font-size: 66cqw;
-  line-height: 0.85;
-  color: var(--secondary);
-  letter-spacing: -0.02em;
   z-index: 1;
+  font-weight: 900;
+  font-size: 80cqw;
+  line-height: 0.8;
+  letter-spacing: -0.03em;
   white-space: nowrap;
-  text-shadow: 0.035em 0.05em 0 rgba(242, 194, 0, 0.8);
+}
+
+.sticker__number-front {
+  display: block;
+  position: relative;
+  color: var(--secondary);
+}
+
+.sticker__number-back {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #f5c518;
+  transform: translate(0.06em, 0.07em);
 }
 
 .sticker__inner {
@@ -106,20 +119,41 @@
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
 }
 
-/* Sigla vertical lateral (vazada, como o código do país no original) */
-.sticker__sigla {
+/* Lateral direita: gota com bandeira + sigla vazada (como o BRA do original) */
+.sticker__country {
   position: absolute;
-  right: 2%;
-  top: 52%;
+  right: 2.5%;
+  top: 44%;
+  width: 17%;
   z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6%;
+}
+
+.sticker__flag {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 50% 50% 50% 0;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.sticker__flag svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.sticker__code {
   writing-mode: vertical-rl;
   font-weight: 900;
   font-size: 14cqw;
-  line-height: 1;
+  line-height: 1.05;
   letter-spacing: 0.02em;
   color: transparent;
-  -webkit-text-stroke: 2px rgba(255, 255, 255, 0.92);
-  text-shadow: none;
+  -webkit-text-stroke: 1.6px rgba(255, 255, 255, 0.95);
 }
 
 /* Faixas inferiores (alinhadas a esquerda, como o original) */
