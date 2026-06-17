@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react'
-import { toPng } from 'html-to-image'
+import { exportarPng } from '../lib/exportImage.js'
 import StickerCard from './StickerCard.jsx'
 import './PrintSheet.css'
 
@@ -49,7 +49,7 @@ export default function PrintSheet({
       for (let i = 0; i < pagesRef.current.length; i++) {
         const el = pagesRef.current[i]
         if (!el) continue
-        const dataUrl = await toPng(el, { pixelRatio: 3, cacheBust: true })
+        const dataUrl = await exportarPng(el, { pixelRatio: 2 })
         const link = document.createElement('a')
         link.download =
           paginas.length > 1 ? `folha-a4-${i + 1}.png` : 'folha-a4.png'

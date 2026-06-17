@@ -6,9 +6,10 @@ const StickerCard = forwardRef(function StickerCard(
   ref,
 ) {
   return (
-    <div className={'sticker' + (compact ? ' sticker--compact' : '')} ref={ref}>
+    <div className={'sticker' + (compact ? ' sticker--compact' : '')}>
       <div
         className="sticker__inner"
+        ref={ref}
         style={{
           '--primary': data.primary,
           '--secondary': data.secondary,

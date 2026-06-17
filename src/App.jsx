@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react'
-import { toPng } from 'html-to-image'
+import { exportarPng } from './lib/exportImage.js'
 import StickerCard from './components/StickerCard.jsx'
 import PrintSheet from './components/PrintSheet.jsx'
 import './App.css'
@@ -108,10 +108,7 @@ export default function App() {
     if (!cardRef.current) return
     setBaixando(true)
     try {
-      const dataUrl = await toPng(cardRef.current, {
-        pixelRatio: 3,
-        cacheBust: true,
-      })
+      const dataUrl = await exportarPng(cardRef.current, { pixelRatio: 3 })
       const link = document.createElement('a')
       const nomeArquivo = (data.nome || 'figurinha')
         .toLowerCase()
