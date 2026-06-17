@@ -1,0 +1,190 @@
+.sticker {
+  /* Proporção parecida com figurinha Panini (5:7) */
+  width: 100%;
+  max-width: 360px;
+  aspect-ratio: 5 / 7;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 22px;
+  padding: 14px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+}
+
+/* Modo compacto (usado na folha A4 de impressão) */
+.sticker--compact {
+  max-width: none;
+  border-radius: 8px;
+  padding: 5px;
+  box-shadow: none;
+  border: 1px solid #e4e4e4;
+}
+
+.sticker--compact .sticker__inner {
+  border-radius: 6px;
+}
+
+.sticker__inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--primary);
+}
+
+/* Numerão de fundo grande */
+.sticker__number {
+  position: absolute;
+  top: -6%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-weight: 900;
+  font-size: 56cqw;
+  line-height: 1;
+  color: var(--secondary);
+  letter-spacing: -0.04em;
+  z-index: 1;
+  white-space: nowrap;
+}
+
+.sticker__inner {
+  container-type: inline-size;
+}
+
+/* Foto */
+.sticker__photo {
+  position: absolute;
+  inset: 6% 6% 26% 6%;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.sticker__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.sticker__photo-placeholder {
+  align-self: center;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 700;
+  font-size: 4.2cqw;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+}
+
+/* Emblema (canto superior direito) */
+.sticker__emblem {
+  position: absolute;
+  top: 4%;
+  right: 4%;
+  width: 22%;
+  aspect-ratio: 1;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.95);
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.sticker__emblem img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 8%;
+}
+
+.sticker__emblem span {
+  font-weight: 900;
+  font-size: 9cqw;
+  color: var(--secondary);
+  letter-spacing: -0.03em;
+}
+
+/* Sigla vertical lateral */
+.sticker__sigla {
+  position: absolute;
+  right: 3%;
+  top: 30%;
+  z-index: 3;
+  writing-mode: vertical-rl;
+  font-weight: 900;
+  font-size: 12cqw;
+  letter-spacing: 0.05em;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.9);
+  text-shadow: none;
+}
+
+/* Faixas inferiores */
+.sticker__bands {
+  position: absolute;
+  left: 5%;
+  right: 5%;
+  bottom: 4%;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  gap: 2.2%;
+}
+
+.band {
+  background: rgba(13, 40, 56, 0.78);
+  color: #fff;
+  border-radius: 999px;
+  text-align: center;
+  padding: 2.6cqw 4cqw;
+  font-weight: 800;
+}
+
+.band--name {
+  font-size: 8.5cqw;
+  letter-spacing: 0.02em;
+}
+
+.band--data {
+  font-size: 4.4cqw;
+  font-weight: 700;
+}
+
+.band--group {
+  font-size: 4.4cqw;
+  width: 80%;
+  margin: 0 auto;
+}
+
+/* Selo do canto inferior direito */
+.sticker__seal {
+  position: absolute;
+  right: 5%;
+  bottom: 3.5%;
+  width: 24%;
+  aspect-ratio: 16 / 9;
+  z-index: 6;
+  background: #ffd200;
+  color: #1a1a1a;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  font-weight: 900;
+  font-size: 5cqw;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+.sticker__seal img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 6%;
+  background: #fff;
+}
