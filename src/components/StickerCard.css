@@ -35,14 +35,14 @@
 /* Numerão de fundo grande */
 .sticker__number {
   position: absolute;
-  top: -6%;
+  top: 1%;
   left: 50%;
   transform: translateX(-50%);
   font-weight: 900;
-  font-size: 56cqw;
-  line-height: 1;
+  font-size: 70cqw;
+  line-height: 0.9;
   color: var(--secondary);
-  letter-spacing: -0.04em;
+  letter-spacing: 0.02em;
   z-index: 1;
   white-space: nowrap;
 }
@@ -78,49 +78,46 @@
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
 }
 
-/* Emblema (canto superior direito) */
+/* Emblema (canto superior direito) — sem caixa, só a imagem */
 .sticker__emblem {
   position: absolute;
   top: 4%;
   right: 4%;
   width: 22%;
-  aspect-ratio: 1;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.95);
   z-index: 4;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
 }
 
 .sticker__emblem img {
   width: 100%;
-  height: 100%;
+  height: auto;
   object-fit: contain;
-  padding: 8%;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.3));
 }
 
 .sticker__emblem span {
   font-weight: 900;
   font-size: 9cqw;
-  color: var(--secondary);
+  color: #fff;
   letter-spacing: -0.03em;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
 }
 
-/* Sigla vertical lateral */
+/* Sigla vertical lateral (vazada, como o código do país no original) */
 .sticker__sigla {
   position: absolute;
-  right: 3%;
-  top: 30%;
+  right: 2%;
+  top: 34%;
   z-index: 3;
   writing-mode: vertical-rl;
   font-weight: 900;
-  font-size: 12cqw;
-  letter-spacing: 0.05em;
+  font-size: 15cqw;
+  line-height: 1;
+  letter-spacing: 0.02em;
   color: transparent;
-  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.9);
+  -webkit-text-stroke: 2px rgba(255, 255, 255, 0.92);
   text-shadow: none;
 }
 
@@ -161,30 +158,25 @@
   margin: 0 auto;
 }
 
-/* Selo do canto inferior direito */
+/* Selo do canto inferior direito — sem caixa, só a imagem */
 .sticker__seal {
   position: absolute;
   right: 5%;
-  bottom: 3.5%;
-  width: 24%;
-  aspect-ratio: 16 / 9;
+  bottom: 4%;
+  width: 22%;
   z-index: 6;
-  background: #ffd200;
-  color: #1a1a1a;
-  border-radius: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
   font-weight: 900;
   font-size: 5cqw;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  color: #fff;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
 }
 
 .sticker__seal img {
   width: 100%;
-  height: 100%;
+  height: auto;
   object-fit: contain;
-  padding: 6%;
-  background: #fff;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.3));
 }
