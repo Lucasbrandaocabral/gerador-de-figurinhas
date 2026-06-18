@@ -1,5 +1,6 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { exportarPng } from './lib/exportImage.js'
+import { gerarFoilDataUrl, TIPOS_FOIL } from './lib/foil.js'
 import StickerCard from './components/StickerCard.jsx'
 import PrintSheet from './components/PrintSheet.jsx'
 import './App.css'
@@ -45,7 +46,23 @@ export default function App() {
   const [colecao, setColecao] = useState([])
   const [removerFundo, setRemoverFundo] = useState(true)
   const [processandoFoto, setProcessandoFoto] = useState(false)
+  const [foils, setFoils] = useState({})
+  const [bgImagem, setBgImagem] = useState(null)
   const cardRef = useRef(null)
+
+  // Gera as texturas metálicas (ouro/prata/bronze) uma vez ao abrir.
+  useEffect(() => {
+    let ativo = true
+    Promise.all(TIPOS_FOIL.map((t) => gerarFoilDataUrl(t))).then((urls) => {
+      if (!ativo) return
+      const mapa = {}
+      TIPOS_FOIL.forEach((t, i) => (mapa[t] = urls[i]))
+      setFoils(mapa)
+    })
+    return () => {
+      ativo = false
+    }
+  }, [])
 
   function update(field, value) {
     setData((d) => ({ ...d, [field]: value }))
@@ -96,8 +113,23 @@ export default function App() {
   function adicionarAFolha() {
     setColecao((c) => [
       ...c,
-      { id: proximoId++, data: { ...data }, foto, emblema, selo: selb, qtd: 8 },
+      {
+        id: proximoId++,
+        data: { ...data },
+        foto,
+        emblema,
+        selo: selb,
+        bgImagem,
+        qtd: 8,
+      },
     ])
+  }
+
+  // Fundo a usar na figurinha: imagem enviada manda; senão, a textura metálica.
+  function resolverFundo(d, bg) {
+    if (bg) return bg
+    if (d.fundo && d.fundo !== 'cor') return foils[d.fundo] || null
+    return null
   }
 
   function atualizarQtd(id, qtd) {
@@ -324,13 +356,34 @@ export default function App() {
                     className={
                       'fundo-chip fundo-chip--' +
                       f.id +
-                      (data.fundo === f.id ? ' fundo-chip--active' : '')
+                      (data.fundo === f.id && !bgImagem
+                        ? ' fundo-chip--active'
+                        : '')
                     }
                     onClick={() => update('fundo', f.id)}
                   >
                     {f.nome}
                   </button>
                 ))}
+              </div>
+            </Field>
+
+            <Field label="Imagem de fundo (opcional — substitui o fundo acima)">
+              <div className="upload-row">
+                <label className="upload upload--sm">
+                  🖼️ Enviar imagem de fundo
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => lerArquivo(e.target.files[0], setBgImagem)}
+                    hidden
+                  />
+                </label>
+                {bgImagem && (
+                  <button className="btn-clear" onClick={() => setBgImagem(null)}>
+                    remover
+                  </button>
+                )}
               </div>
             </Field>
           </section>
@@ -367,12 +420,15 @@ export default function App() {
               foto={foto}
               emblema={emblema}
               selo={selb}
+              fundoUrl={resolverFundo(data, bgImagem)}
             />
           </section>
         </div>
       ) : (
         <PrintSheet
           colecao={colecao}
+          foils={foils}
+          resolverFundo={resolverFundo}
           onQtd={atualizarQtd}
           onRemover={removerDaFolha}
           onAdicionarAtual={adicionarAFolha}

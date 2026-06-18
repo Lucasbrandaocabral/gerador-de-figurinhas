@@ -2,22 +2,24 @@ import { forwardRef } from 'react'
 import './StickerCard.css'
 
 const StickerCard = forwardRef(function StickerCard(
-  { data, foto, emblema, selo, compact = false },
+  { data, foto, emblema, selo, fundoUrl = null, compact = false },
   ref,
 ) {
   return (
     <div className={'sticker' + (compact ? ' sticker--compact' : '')}>
       <div
-        className={
-          'sticker__inner' +
-          (data.fundo && data.fundo !== 'cor'
-            ? ' sticker__inner--' + data.fundo
-            : '')
-        }
+        className="sticker__inner"
         ref={ref}
         style={{
           '--primary': data.primary,
           '--secondary': data.secondary,
+          ...(fundoUrl
+            ? {
+                backgroundImage: `url(${fundoUrl})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+              }
+            : {}),
         }}
       >
         {/* Numerão de fundo (verde na frente, amarelo deslocado atrás) */}

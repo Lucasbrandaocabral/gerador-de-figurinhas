@@ -19,6 +19,8 @@ function calcularLayout(cols) {
 
 export default function PrintSheet({
   colecao,
+  foils,
+  resolverFundo,
   onQtd,
   onRemover,
   onAdicionarAtual,
@@ -153,6 +155,7 @@ export default function PrintSheet({
                     foto={item.foto}
                     emblema={item.emblema}
                     selo={item.selo}
+                    fundoUrl={resolverFundo(item.data, item.bgImagem)}
                     compact
                   />
                 </div>
