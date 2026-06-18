@@ -163,6 +163,46 @@ input[type='text'],
   font-weight: 700;
 }
 
+/* Botões de edição especial (fundos metálicos) */
+.fundos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.fundo-chip {
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  padding: 9px 12px;
+  font-weight: 800;
+  font-size: 13px;
+  color: #1a1a1a;
+  background: var(--panel-2);
+}
+
+.fundo-chip--cor {
+  color: var(--text);
+  background: var(--panel-2);
+}
+
+.fundo-chip--ouro {
+  background: linear-gradient(135deg, #fff4cc, #e8c558 45%, #a9791d);
+}
+
+.fundo-chip--prata {
+  background: linear-gradient(135deg, #ffffff, #c2c8ce 45%, #878d95);
+}
+
+.fundo-chip--bronze {
+  background: linear-gradient(135deg, #f0c49a, #b87a40 45%, #74441c);
+  color: #fff;
+}
+
+.fundo-chip--active {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(33, 208, 122, 0.35);
+}
+
 .upload-row {
   display: flex;
   align-items: center;

@@ -32,6 +32,67 @@
   background: var(--primary);
 }
 
+/* Edições especiais: fundo de papel metálico amassado (só com CSS) */
+.sticker__inner--ouro {
+  background-color: #c79a2e;
+  background-image:
+    radial-gradient(circle at 20% 15%, rgba(255, 255, 255, 0.55), transparent 26%),
+    radial-gradient(circle at 82% 68%, rgba(255, 255, 255, 0.4), transparent 24%),
+    repeating-linear-gradient(
+      125deg,
+      rgba(255, 255, 255, 0.3) 0 1.2%,
+      rgba(0, 0, 0, 0.1) 1.2% 2.6%,
+      transparent 2.6% 5.5%
+    ),
+    repeating-linear-gradient(
+      58deg,
+      rgba(255, 255, 255, 0.22) 0 1%,
+      rgba(0, 0, 0, 0.08) 1% 2.4%,
+      transparent 2.4% 6%
+    ),
+    linear-gradient(135deg, #fff4cc 0%, #e8c558 22%, #a9791d 48%, #f1d985 66%, #936a14 100%);
+}
+
+.sticker__inner--prata {
+  background-color: #b9bfc6;
+  background-image:
+    radial-gradient(circle at 22% 18%, rgba(255, 255, 255, 0.7), transparent 26%),
+    radial-gradient(circle at 78% 72%, rgba(255, 255, 255, 0.5), transparent 24%),
+    repeating-linear-gradient(
+      125deg,
+      rgba(255, 255, 255, 0.4) 0 1.2%,
+      rgba(0, 0, 0, 0.1) 1.2% 2.6%,
+      transparent 2.6% 5.5%
+    ),
+    repeating-linear-gradient(
+      58deg,
+      rgba(255, 255, 255, 0.28) 0 1%,
+      rgba(0, 0, 0, 0.08) 1% 2.4%,
+      transparent 2.4% 6%
+    ),
+    linear-gradient(135deg, #ffffff 0%, #c2c8ce 24%, #878d95 50%, #eef1f4 68%, #969ca4 100%);
+}
+
+.sticker__inner--bronze {
+  background-color: #a9682f;
+  background-image:
+    radial-gradient(circle at 20% 15%, rgba(255, 240, 220, 0.5), transparent 26%),
+    radial-gradient(circle at 80% 70%, rgba(255, 235, 210, 0.35), transparent 24%),
+    repeating-linear-gradient(
+      125deg,
+      rgba(255, 235, 210, 0.28) 0 1.2%,
+      rgba(0, 0, 0, 0.12) 1.2% 2.6%,
+      transparent 2.6% 5.5%
+    ),
+    repeating-linear-gradient(
+      58deg,
+      rgba(255, 235, 210, 0.2) 0 1%,
+      rgba(0, 0, 0, 0.1) 1% 2.4%,
+      transparent 2.4% 6%
+    ),
+    linear-gradient(135deg, #f0c49a 0%, #b87a40 24%, #74441c 50%, #e6b988 68%, #6b3f1a 100%);
+}
+
 /* Numerão de fundo grande — verde na frente, amarelo deslocado atrás */
 .sticker__number {
   position: absolute;

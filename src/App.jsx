@@ -13,6 +13,13 @@ const PALETTES = [
   { name: 'Coral', primary: '#ef6b4f', secondary: '#c24a32' },
 ]
 
+const FUNDOS = [
+  { id: 'cor', nome: 'Cor' },
+  { id: 'ouro', nome: '✨ Ouro' },
+  { id: 'prata', nome: '✨ Prata' },
+  { id: 'bronze', nome: '✨ Bronze' },
+]
+
 const INITIAL = {
   nome: 'MARIA SILVA',
   numero: '26',
@@ -23,6 +30,7 @@ const INITIAL = {
   selo: '2026',
   primary: '#29abe2',
   secondary: '#1f9d4d',
+  fundo: 'cor',
 }
 
 let proximoId = 1
@@ -305,6 +313,24 @@ export default function App() {
                     onChange={(e) => update('secondary', e.target.value)}
                   />
                 </label>
+              </div>
+            </Field>
+
+            <Field label="Edição especial (fundo metálico)">
+              <div className="fundos">
+                {FUNDOS.map((f) => (
+                  <button
+                    key={f.id}
+                    className={
+                      'fundo-chip fundo-chip--' +
+                      f.id +
+                      (data.fundo === f.id ? ' fundo-chip--active' : '')
+                    }
+                    onClick={() => update('fundo', f.id)}
+                  >
+                    {f.nome}
+                  </button>
+                ))}
               </div>
             </Field>
           </section>

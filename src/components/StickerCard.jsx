@@ -8,7 +8,12 @@ const StickerCard = forwardRef(function StickerCard(
   return (
     <div className={'sticker' + (compact ? ' sticker--compact' : '')}>
       <div
-        className="sticker__inner"
+        className={
+          'sticker__inner' +
+          (data.fundo && data.fundo !== 'cor'
+            ? ' sticker__inner--' + data.fundo
+            : '')
+        }
         ref={ref}
         style={{
           '--primary': data.primary,
