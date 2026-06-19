@@ -23,9 +23,10 @@ export default function PrintSheet({
   resolverFundo,
   onQtd,
   onRemover,
+  onEditar,
   onAdicionarAtual,
 }) {
-  const [cols, setCols] = useState(4)
+  const [cols, setCols] = useState(3)
   const [baixando, setBaixando] = useState(false)
   const pagesRef = useRef([])
 
@@ -127,6 +128,9 @@ export default function PrintSheet({
                 onChange={(e) => onQtd(item.id, parseInt(e.target.value, 10))}
               />
             </label>
+            <button className="sheet__editar" onClick={() => onEditar(item)}>
+              ✏️ editar
+            </button>
             <button className="btn-clear" onClick={() => onRemover(item.id)}>
               remover
             </button>

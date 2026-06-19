@@ -101,6 +101,20 @@
   color: var(--muted);
 }
 
+.sheet__editar {
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 8px;
+  padding: 7px 12px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.sheet__editar:hover {
+  border-color: var(--accent);
+}
+
 .sheet__qtd input {
   width: 64px;
   background: var(--panel-2);

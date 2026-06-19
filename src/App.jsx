@@ -120,7 +120,7 @@ export default function App() {
         emblema,
         selo: selb,
         bgImagem,
-        qtd: 8,
+        qtd: 1,
       },
     ])
   }
@@ -142,6 +142,17 @@ export default function App() {
 
   function removerDaFolha(id) {
     setColecao((c) => c.filter((item) => item.id !== id))
+  }
+
+  // Abre uma figurinha da folha de volta no editor (e tira ela da folha).
+  function editarDaFolha(item) {
+    setData({ ...item.data })
+    setFoto(item.foto)
+    setEmblema(item.emblema)
+    setSelo(item.selo)
+    setBgImagem(item.bgImagem || null)
+    removerDaFolha(item.id)
+    setAba('editor')
   }
 
   async function baixarPng() {
@@ -431,6 +442,7 @@ export default function App() {
           resolverFundo={resolverFundo}
           onQtd={atualizarQtd}
           onRemover={removerDaFolha}
+          onEditar={editarDaFolha}
           onAdicionarAtual={adicionarAFolha}
         />
       )}
