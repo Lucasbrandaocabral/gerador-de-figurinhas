@@ -30,8 +30,6 @@
   box-sizing: border-box;
   overflow: hidden;
   background: var(--primary);
-  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    Roboto, sans-serif;
 }
 
 /* Edições especiais: fundo de papel metálico amassado (só com CSS) */
