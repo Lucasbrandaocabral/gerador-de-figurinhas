@@ -152,6 +152,10 @@
 
 .a4__cell {
   width: 100%;
+  /* Linha de corte: guia fina para recortar (a moldura branca some no papel) */
+  border: 1px dashed #b0b0b0;
+  border-radius: 10px;
+  padding: 1.5mm;
 }
 
 /* Escala a visualização da folha em telas menores */
