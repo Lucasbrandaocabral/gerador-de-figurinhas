@@ -5,6 +5,10 @@ const StickerCard = forwardRef(function StickerCard(
   { data, foto, emblema, selo, fundoUrl = null, compact = false },
   ref,
 ) {
+  // Sigla no estilo do original: letras iniciais deitadas e a última em pé.
+  const sigla = data.sigla || ''
+  const siglaInicio = sigla.slice(0, -1)
+  const siglaUltima = sigla.slice(-1)
   return (
     <div className={'sticker' + (compact ? ' sticker--compact' : '')}>
       <div
@@ -65,7 +69,14 @@ const StickerCard = forwardRef(function StickerCard(
               />
             </svg>
           </div>
-          <div className="sticker__code">{data.sigla}</div>
+          <div className="sticker__code">
+            {siglaInicio && (
+              <span className="sticker__code-rot">{siglaInicio}</span>
+            )}
+            {siglaUltima && (
+              <span className="sticker__code-up">{siglaUltima}</span>
+            )}
+          </div>
         </div>
 
         {/* Faixas inferiores */}
