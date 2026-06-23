@@ -1,9 +1,9 @@
 {
-  "name": "gerador-de-figurinhas-naispd",
+  "name": "gerador-de-figurinhas",
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "Gerador de figurinhas estilo Copa do Mundo para o NAISPD",
+  "description": "Gerador de figurinhas personalizadas estilo álbum de Copa do Mundo",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

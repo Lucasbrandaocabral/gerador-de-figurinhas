@@ -1,34 +1,36 @@
-# Gerador de Figurinhas · NAISPD
+# Gerador de Figurinhas
 
-App em React (Vite) que cria figurinhas no estilo álbum de coleção da Copa do
-Mundo, mas pensado para o seu trabalho no **NAISPD**. No lugar dos logos da FIFA
-e da Panini você sobe **suas próprias imagens** (emblema e selo).
+Página web (React + Vite) para criar **figurinhas personalizadas** no estilo dos
+álbuns de coleção de Copa do Mundo. Você monta a figurinha de cada pessoa, baixa
+em PNG e ainda pode montar uma folha A4 com várias para imprimir e recortar.
+
+## Para que serve
+
+Serve para gerar, de forma simples e no navegador, figurinhas colecionáveis com
+a cara de álbum esportivo: foto da pessoa, numerão de fundo, nome em destaque,
+linha de dados, grupo/equipe, sigla na lateral com bandeira e até edições
+especiais com fundo metálico. Ótimo para eventos, brincadeiras, equipes,
+turmas e coleções personalizadas.
+
+Tudo é processado **no próprio navegador** — nenhuma imagem é enviada para fora.
 
 ## Recursos
 
-- Foto da pessoa (rosto/busto) com pré-visualização ao vivo
-- **Remoção automática de fundo** da foto (opcional, ligada por padrão): deixa a
-  pessoa recortada igual ao original, com o numerão aparecendo em volta. Se
-  preferir, desligue e use uma imagem já recortada (PNG transparente)
-- Numerão de fundo gigante, igual às figurinhas
-- Nome em destaque, linha de dados, grupo/unidade e sigla de 3 letras
-- **Emblema** no canto superior (no lugar da FIFA): envie sua imagem ou use iniciais
-- **Selo** no canto inferior (no lugar da Panini): envie sua imagem ou use texto
-- Paleta de cores rápida + cores personalizadas (fundo e destaque)
-- Botão **Baixar PNG** em alta resolução
-- Botão **Limpar foto**
-- **Folha A4 para impressão:** adicione várias figurinhas (diferentes ou não),
-  defina quantas cópias de cada, escolha quantas por linha (3, 4 ou 5) e
-  **imprima** ou **baixe a folha em PNG** pronta para recortar
-
-## Como montar a folha A4
-
-1. Na aba **Editor**, monte uma figurinha.
-2. Clique em **"＋ Adicionar à folha A4"**.
-3. Repita para outras pessoas, se quiser.
-4. Abra a aba **Folha A4**, ajuste as cópias de cada uma e o número por linha.
-5. Clique em **Imprimir** (imprima em tamanho real / 100%, sem "ajustar à
-   página") ou em **Baixar folha PNG**. Depois é só recortar.
+- **Foto da pessoa** com pré-visualização ao vivo
+- **Remoção automática de fundo** da foto (opcional): recorta a pessoa para o
+  numerão aparecer em volta, como no original. Também aceita imagem já recortada
+  (PNG transparente)
+- **Numerão de fundo** grande com efeito de relevo
+- **Nome, linha de dados, grupo/equipe** e **sigla** de 3 letras
+- **Sigla lateral** com a **bandeira** e o emblema no canto
+- **Edições especiais** com fundo metálico (ouro, prata e bronze)
+- **Imagem de fundo própria** (opcional), que substitui o fundo
+- **Paleta de cores** rápida + cores personalizadas
+- **Baixar PNG** em alta resolução
+- **Folha A4 para impressão:** adicione várias figurinhas, defina as cópias de
+  cada uma, escolha quantas por linha (3, 4 ou 5) e imprima ou baixe a folha em
+  PNG, com **linhas de corte** para facilitar o recorte
+- Botão **editar** para reabrir uma figurinha da folha e ajustar
 
 ## Como rodar
 
@@ -46,11 +48,11 @@ npm run build
 npm run preview
 ```
 
-## Onde colocar os logos do NAISPD
+## Como montar a folha A4
 
-- **Emblema (canto superior):** campo "Logo do emblema". Use um PNG com fundo
-  transparente para ficar mais bonito.
-- **Selo (canto inferior):** campo "Selo do canto inferior".
-
-Enquanto você não envia as imagens, o app mostra as iniciais/textos definidos
-nos campos correspondentes.
+1. No **Editor**, monte uma figurinha.
+2. Clique em **"＋ Adicionar à folha A4"**.
+3. Repita para outras pessoas, se quiser.
+4. Abra a aba **Folha A4**, ajuste as cópias de cada uma e o número por linha.
+5. Clique em **Imprimir** (em tamanho real / 100%, sem "ajustar à página") ou em
+   **Baixar folha PNG**. Depois é só recortar pelas linhas de corte.

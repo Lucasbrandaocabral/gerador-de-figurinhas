@@ -26,7 +26,7 @@ const INITIAL = {
   numero: '26',
   sigla: 'NSP',
   linhaDados: '5-2-1992 | 1,75m | 68 kg',
-  grupo: 'NAISPD (SP)',
+  grupo: 'EQUIPE (BR)',
   iniciaisEmblema: 'NP',
   selo: '2026',
   primary: '#29abe2',
@@ -165,7 +165,7 @@ export default function App() {
         .toLowerCase()
         .replace(/[^a-z0-9]+/g, '-')
         .replace(/(^-|-$)/g, '')
-      link.download = `figurinha-${nomeArquivo || 'naispd'}.png`
+      link.download = `figurinha-${nomeArquivo || 'figurinha'}.png`
       link.href = dataUrl
       link.click()
     } catch (err) {
@@ -182,7 +182,7 @@ export default function App() {
     <div className="app">
       <header className="app__header">
         <h1>GERADOR DE FIGURINHAS</h1>
-        <p>Estilo álbum de coleção · NAISPD</p>
+        <p>Estilo álbum de coleção</p>
       </header>
 
       <nav className="tabs">
