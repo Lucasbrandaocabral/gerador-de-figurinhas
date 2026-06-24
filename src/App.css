@@ -4,6 +4,15 @@
   letter-spacing: 0.02em;
 }
 
+@media (max-width: 520px) {
+  .app__header h1 {
+    font-size: 22px;
+  }
+  .app__header p {
+    margin-bottom: 16px;
+  }
+}
+
 .app__header p {
   margin: 4px 0 24px;
   color: var(--muted);

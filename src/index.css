@@ -32,6 +32,12 @@ body {
   padding: 24px 16px 64px;
 }
 
+@media (max-width: 520px) {
+  #root {
+    padding: 16px 12px 48px;
+  }
+}
+
 button {
   font-family: inherit;
   cursor: pointer;

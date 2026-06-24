@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useLayoutEffect, useRef, useState } from 'react'
 import { exportarPng } from '../lib/exportImage.js'
 import StickerCard from './StickerCard.jsx'
 import './PrintSheet.css'
@@ -29,6 +29,28 @@ export default function PrintSheet({
   const [cols, setCols] = useState(3)
   const [baixando, setBaixando] = useState(false)
   const pagesRef = useRef([])
+  const wrapRef = useRef(null)
+  const pagesNodeRef = useRef(null)
+  const [escala, setEscala] = useState(1)
+  const [outerH, setOuterH] = useState(undefined)
+
+  // Encolhe a previa da folha para caber na largura da tela (ex.: celular),
+  // mantendo o tamanho real para impressao/download.
+  useLayoutEffect(() => {
+    function calc() {
+      const wrap = wrapRef.current
+      const pages = pagesNodeRef.current
+      if (!wrap || !pages) return
+      const a4 = pagesRef.current.find(Boolean)
+      const a4W = a4 ? a4.offsetWidth : 794
+      const s = a4W ? Math.min(1, wrap.clientWidth / a4W) : 1
+      setEscala(s)
+      setOuterH(pages.scrollHeight * s)
+    }
+    calc()
+    window.addEventListener('resize', calc)
+    return () => window.removeEventListener('resize', calc)
+  }, [colecao, cols])
 
   const { porPagina } = calcularLayout(cols)
 
@@ -48,6 +70,10 @@ export default function PrintSheet({
 
   async function baixarFolhas() {
     setBaixando(true)
+    // Captura sempre em tamanho real (remove o escalonamento da previa)
+    const pagesNode = pagesNodeRef.current
+    const transformAnterior = pagesNode ? pagesNode.style.transform : ''
+    if (pagesNode) pagesNode.style.transform = 'none'
     try {
       for (let i = 0; i < pagesRef.current.length; i++) {
         const el = pagesRef.current[i]
@@ -64,6 +90,7 @@ export default function PrintSheet({
       console.error(err)
       alert('Não foi possível gerar a folha. Tente novamente.')
     } finally {
+      if (pagesNode) pagesNode.style.transform = transformAnterior
       setBaixando(false)
     }
   }
@@ -143,14 +170,23 @@ export default function PrintSheet({
         tamanho real (100%, sem "ajustar à página") e recorte.
       </p>
 
-      <div className="sheet__pages print-area">
-        {paginas.map((pagina, p) => (
-          <div
-            key={p}
-            className="a4"
-            ref={(el) => (pagesRef.current[p] = el)}
-            style={{ '--cols': cols }}
-          >
+      <div
+        className="sheet__pages-wrap print-area"
+        ref={wrapRef}
+        style={{ height: outerH }}
+      >
+        <div
+          className="sheet__pages"
+          ref={pagesNodeRef}
+          style={{ transform: `scale(${escala})`, transformOrigin: 'top left' }}
+        >
+          {paginas.map((pagina, p) => (
+            <div
+              key={p}
+              className="a4"
+              ref={(el) => (pagesRef.current[p] = el)}
+              style={{ '--cols': cols }}
+            >
             <div className="a4__grid">
               {pagina.map((item) => (
                 <div className="a4__cell" key={item.key}>
@@ -165,8 +201,9 @@ export default function PrintSheet({
                 </div>
               ))}
             </div>
-          </div>
-        ))}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   )

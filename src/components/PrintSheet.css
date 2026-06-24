@@ -126,11 +126,19 @@
 }
 
 /* Páginas A4 */
+/* Container que recorta a prévia escalada (para caber em telas pequenas) */
+.sheet__pages-wrap {
+  width: 100%;
+  overflow: hidden;
+}
+
 .sheet__pages {
   display: flex;
   flex-direction: column;
   gap: 20px;
   align-items: center;
+  width: fit-content;
+  margin: 0 auto;
 }
 
 .a4 {
@@ -156,13 +164,6 @@
   border: 1px dashed #b0b0b0;
   border-radius: 10px;
   padding: 1.5mm;
-}
-
-/* Escala a visualização da folha em telas menores */
-@media (max-width: 900px) {
-  .sheet__pages {
-    overflow-x: auto;
-  }
 }
 
 /* ---- Impressão ---- */
@@ -191,8 +192,17 @@
     display: none !important;
   }
 
+  /* Na impressão, ignora o escalonamento da prévia (usa tamanho real) */
+  .sheet__pages-wrap {
+    height: auto !important;
+    overflow: visible !important;
+  }
+
   .sheet__pages {
     gap: 0;
+    width: auto !important;
+    margin: 0 !important;
+    transform: none !important;
   }
 
   .a4 {
