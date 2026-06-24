@@ -1,10 +1,33 @@
-import { forwardRef } from 'react'
+import { forwardRef, useLayoutEffect, useRef } from 'react'
 import './StickerCard.css'
 
 const StickerCard = forwardRef(function StickerCard(
   { data, foto, emblema, selo, fundoUrl = null, compact = false },
   ref,
 ) {
+  // Mantém o nome em uma linha só, encolhendo a fonte se for comprido,
+  // para a faixa do nome não ficar mais alta que as outras.
+  const nomeRef = useRef(null)
+  useLayoutEffect(() => {
+    const el = nomeRef.current
+    if (!el) return
+    const faixa = el.parentElement
+    function ajustar() {
+      el.style.fontSize = ''
+      const cs = getComputedStyle(faixa)
+      const padX = parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight)
+      const disponivel = faixa.clientWidth - padX
+      const necessario = el.scrollWidth
+      if (necessario > disponivel && necessario > 0) {
+        const base = parseFloat(getComputedStyle(el).fontSize)
+        el.style.fontSize = Math.max(1, base * (disponivel / necessario)) + 'px'
+      }
+    }
+    ajustar()
+    const ro = new ResizeObserver(ajustar)
+    ro.observe(faixa)
+    return () => ro.disconnect()
+  }, [data.nome])
   return (
     <div className={'sticker' + (compact ? ' sticker--compact' : '')}>
       <div
@@ -70,7 +93,11 @@ const StickerCard = forwardRef(function StickerCard(
 
         {/* Faixas inferiores */}
         <div className="sticker__bands">
-          <div className="band band--name">{data.nome}</div>
+          <div className="band band--name">
+            <span className="band__nome" ref={nomeRef}>
+              {data.nome}
+            </span>
+          </div>
           <div className="band band--data">{data.linhaDados}</div>
           <div className="band band--group">{data.grupo}</div>
         </div>

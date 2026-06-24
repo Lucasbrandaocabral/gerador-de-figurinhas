@@ -245,6 +245,13 @@
   letter-spacing: 0.01em;
 }
 
+/* Nome sempre em uma linha (a fonte encolhe via JS se for comprido) */
+.band__nome {
+  display: inline-block;
+  white-space: nowrap;
+  line-height: 1.15;
+}
+
 .band--data {
   width: 82%;
   font-size: 4.4cqw;
